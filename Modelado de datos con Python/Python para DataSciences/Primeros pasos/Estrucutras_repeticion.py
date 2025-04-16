@@ -120,41 +120,38 @@ Al final de la votación, el programa debe mostrar el número total de votos par
 
 Si necesitas ayuda, las soluciones a las actividades están disponibles en la sección Opinión del instructor'''
 
-candidato_1 = 0
-candidato_2 = 0
-candidato_3 = 0
-candidato_4 = 0
 
-voto_blanco = 0
-voto_nulo= 0
-try:
-    voto = int(input('Ingresa el número de tu candidato (1. Lalo, 2. Juan, 3. Monse, 4. Guille, 5. Nulo, 6. Blanco): '))
-    for n in range (1, 5):
-        try: 
-            while 1<= voto >= 6:
-                voto = int(input('Ingresa el número de tu candidato (1. Lalo, 2. Juan, 3. Monse, 4. Guille, 5. Nulo, 6. Blanco: )'))
-            if voto == 1:
-                candidato_1 += 1
-            elif voto == 2:
-                candidato_2 +=1
-            elif voto == 3:
-                candidato_3 +=1
-            elif voto == 4:
-                candidato_4 +=1
-            elif voto == 5:
-                voto_nulo +=1
-            elif voto == 6:
-                voto_blanco +=1
-        except:
-            print('Dato invalido. Ingresa un valor del 1-6')
-except:
-    print
-porcentaje_nulo = (voto_nulo/20)*100
-porcentaje_blanco= (voto_blanco/20)*100
-print(f'El candidato 1. Lalo tuvo {candidato_1} votos')
-print(f'El candidato 2. Juan tuvo {candidato_2} votos')
-print(f'El candidato 3. Monse tuvo {candidato_3} votos')
-print(f'El candidato 4. Guille tuvo {candidato_4} votos')
-print(f'Exisiteron {voto_nulo} votos nulos, siendo estos el {porcentaje_nulo}% de los votos totales')
-print(f'Exisiteron {voto_blanco} votos blancos, siendo estos el {porcentaje_blanco}% de los votos totales')
+votos_candidato1 = 0
+votos_candidato2 = 0
+votos_candidato3 = 0
+votos_candidato4 = 0
+votos_nulos = 0
+votos_blanco = 0
+
+
+for i in range(0, 20):
+    voto = int(input('Ingresa tu voto: '))
+    if voto == 1:
+        votos_candidato1 += 1
+    elif voto == 2:
+        votos_candidato2 += 1
+    elif voto == 3:
+        votos_candidato3 += 1
+    elif voto == 4:
+        votos_candidato4 += 1
+    elif voto == 5:
+        votos_nulos += 1
+    elif voto == 6:
+        votos_blanco += 1
+    else:
+        print("Voto inválido.")
+
+print(f'Votos candidato 1: {votos_candidato1}')
+print(f'Votos candidato 2: {votos_candidato2}')
+print(f'Votos candidato 3: {votos_candidato3}')
+print(f'Votos candidato 4: {votos_candidato4}')
+print(f'Votos nulos: {votos_nulos}')
+print(f'Votos en blanco: {votos_blanco}')
+print(f'Porcentaje de votos nulos: {(votos_nulos / 20 * 100)}')
+print(f'Porcentaje de votos en blanco: {(votos_blanco / 20 * 100)}')
     
