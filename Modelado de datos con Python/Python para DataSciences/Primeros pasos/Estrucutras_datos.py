@@ -201,6 +201,99 @@ lista_ventas = {'Producto A': 300, 'Producto B': 80, 'Producto C': 60, 'Producto
 ventas = lista_ventas.values()
 total_ventas = sum(lista_ventas.values())
 mas_vendido = max(ventas)
-ventas.
-print(f'El producto más vendido fue {mas_vendido}')
+
+#Pasa los values de ventas de cada producto en lista
+lista_num_ventas = list(ventas)
+print(lista_num_ventas)
+
+#Extrae en lista las keys y lo convierte en lista
+productos = list(lista_ventas.keys())
+
+#Buscar el indice del producto mas vendido
+mas_vendido_indice = lista_num_ventas.index(mas_vendido)
+
+
+print(f'El producto más vendido fue {productos[mas_vendido_indice]}')
 print(f'El total de ventas fue de {total_ventas} ventas')
+
+
+'''12 - Se realizó una encuesta de mercado para decidir cuál diseño de marca infantil es más atractivo para los niños. Los votos de la encuesta se pueden ver a continuación:
+
+Tabla de votos de la marca
+Diseño 1 - 1334 votos
+Diseño 2 - 982 votos
+Diseño 3 - 1751 votos
+Diseño 4 - 210 votos
+Diseño 5 - 1811 votos
+
+Adapta los datos proporcionados a una estructura de diccionario. A partir de ello, informa el diseño ganador y el porcentaje de votos recibidos.
+'''
+
+votos_disenos = {
+    "Diseño 1": 1334,
+    "Diseño 2": 982,
+    "Diseño 3": 1751,
+    "Diseño 4": 210,
+    "Diseño 5": 1811
+}
+
+#Hacer diccionario en tupla
+diseños_tupla = votos_disenos.items()
+
+#buscar el voto más alto
+ganador = max(diseños_tupla, key= lambda x : x[1])
+
+#porcentaje de votos
+#Extraer los valores
+
+votos_totales = sum(votos_disenos.values())
+porcentaje = (ganador[1]/votos_totales)*100
+
+print(f'El diseño ganador fue el {ganador[0]} con un {porcentaje: .2f}% de los votos totales')
+
+
+'''13 - Los empleados de un departamento de tu empresa recibirán una bonificación del 10% de su salario debido a un excelente rendimiento del equipo. El departamento de finanzas ha solicitado tu ayuda para verificar las consecuencias financieras de esta bonificación en los recursos. Se te ha enviado una lista con los salarios que recibirán la bonificación: [1172, 1644, 2617, 5130, 5532, 6341, 6650, 7238, 7685, 7782, 7903]. La bonificación de cada empleado no puede ser inferior a 200. En el código, convierte cada uno de los salarios en claves de un diccionario y la bonificación de cada salario en el valor correspondiente. Luego, informa el gasto total en bonificaciones, cuántos empleados recibieron la bonificación mínima y cuál fue el valor más alto de la bonificación proporcionada.'''
+
+salarios = [1172, 1644, 2617, 5130, 5532, 6341, 6650, 7238, 7685, 7782, 7903]
+bonificaciones = []
+diccionario_bonificaciones = {}
+
+for i in range(len(salarios)):
+  salario = salarios[i]
+  if salario*.1>=200:
+    porcentaje = salario*.1
+    bonificaciones.append(porcentaje)
+  else:
+    bonificaciones.append(200)
+
+for i in range(len(salarios)):
+  diccionario_bonificaciones[salarios[i]]= bonificaciones[i]
+
+
+#informa el gasto total en bonificaciones
+total_bonificaciones = sum(bonificaciones)
+print(f'El gasto total de bonificaciones fue de ${total_bonificaciones}')
+
+#cuántos empleados recibieron la bonificación mínima 
+num_bonificacion_minima = 0
+for i in range(len(bonificaciones)):
+  if bonificaciones[i] <= 200:
+    num_bonificacion_minima += 1
+print(f'El número de empleados que recibieron la bonifcación mínima fueron {num_bonificacion_minima} empleados')
+
+# y cuál fue el valor más alto de la bonificación proporcionada.
+
+print(f'La bonificación más alta fue de ${max(bonificaciones): .2f}')
+
+
+print(bonificaciones)
+
+print(diccionario_bonificaciones)
+
+'''14 - Un equipo de científicos de datos está estudiando la diversidad biológica en un bosque. El equipo recopiló información sobre el número de especies de plantas y animales en cada área del bosque y almacenó estos datos en un diccionario. En él, la clave describe el área de los datos y los valores en las listas corresponden a las especies de plantas y animales en esas áreas, respectivamente.
+
+{'Área Norte': [2819, 7236], 'Área este': [1440, 9492], 'Área Sur': [5969, 7496], 'Área Oeste': [14446, 49688], 'Área Centro': [22558, 45148]}
+
+Escribe un código para calcular el promedio de especies por área e identificar el área con la mayor diversidad biológica. Sugerencia: utiliza las funciones incorporadas sum() y len().
+
+'''
