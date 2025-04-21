@@ -1,32 +1,40 @@
-'''13 - Los empleados de un departamento de tu empresa recibirán una bonificación del 10% de su salario debido a un excelente rendimiento del equipo. El departamento de finanzas ha solicitado tu ayuda para verificar las consecuencias financieras de esta bonificación en los recursos. Se te ha enviado una lista con los salarios que recibirán la bonificación: [1172, 1644, 2617, 5130, 5532, 6341, 6650, 7238, 7685, 7782, 7903]. La bonificación de cada empleado no puede ser inferior a 200. En el código, convierte cada uno de los salarios en claves de un diccionario y la bonificación de cada salario en el valor correspondiente. Luego, informa el gasto total en bonificaciones, cuántos empleados recibieron la bonificación mínima y cuál fue el valor más alto de la bonificación proporcionada.'''
-
-salarios = [1172, 1644, 2617, 5130, 5532, 6341, 6650, 7238, 7685, 7782, 7903]
-bonificaciones = []
-diccionario_bonificaciones = {}
-
-for i in range(len(salarios)):
-  salario = salarios[i]
-  if salario*.1>=200:
-    porcentaje = salario*.1
-    bonificaciones.append(porcentaje)
-  else:
-    bonificaciones.append(200)
-
-for i in range(len(salarios)):
-  diccionario_bonificaciones[salarios[i]]= bonificaciones[i]
+edades_por_sector = {
+ 'Setor A': [22, 26, 30, 30, 35, 38, 40, 56, 57, 65],
+ 'Setor B': [22, 24, 26, 33, 41, 49, 50, 54, 60, 64],
+ 'Setor C': [23, 26, 26, 29, 34, 35, 36, 41, 52, 56],
+ 'Setor D': [19, 20, 25, 27, 34, 39, 42, 44, 50, 65]}
 
 
-#informa el gasto total en bonificaciones
-total_bonificaciones = sum(bonificaciones)
-print(f'El gasto total de bonificaciones fue de ${total_bonificaciones}')
 
-#cuántos empleados recibieron la bonificación mínima 
-num_bonificacion_minima = 0
-for i in range(len(bonificaciones)):
-  if bonificaciones[i] <= 200:
-    num_bonificacion_minima += 1
-print(f'El número de empleados que recibieron la bonifcación mínima fueron {num_bonificacion_minima} empleados')
+lista_edades_generales = []
+tamaño_empresa= 0
+lista_encima_promedio = []
 
-# y cuál fue el valor más alto de la bonificación proporcionada.
+# Promedio por cada sector
 
-print(f'La bonificación más alta fue de ${max(bonificaciones): .2f}')
+for sector, edad in edades_por_sector.items():
+  lista_edad = list(edad)
+  promedio = sum(lista_edad)/len(lista_edad)
+  print(f'La media de edad del {sector} es de {promedio} años')
+  tamaño_sector = len(lista_edad)
+  tamaño_empresa += tamaño_sector
+
+# Promedio de todos los sectores
+for sector, edad in edades_por_sector.items():
+  lista_edad = list(edad)
+  suma = sum(lista_edad)
+  lista_edades_generales.append(suma)
+
+
+promedio_general = sum(lista_edades_generales)/tamaño_empresa
+print(f'El promedio general es de {promedio_general}')
+
+#Quienes están por encima del promedio
+
+for sector, edad in edades_por_sector.items():
+  valores_edad = list(edad)
+  for edad in range(0, len(valores_edad)):
+    edad_previa = valores_edad[edad]
+    if edad_previa > promedio_general:
+      lista_encima_promedio.append(edad_previa)
+print(f'Las edades que están por encima son {lista_encima_promedio}, siendo estas una cantidad de {len(lista_encima_promedio)} personas')
